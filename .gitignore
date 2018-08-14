@@ -4,6 +4,10 @@
 /dist
 /tmp
 /out-tsc
+/output
+
+# files to ignore
+./package-lock.json
 
 # dependencies
 /node_modules
