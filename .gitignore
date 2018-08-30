@@ -5,9 +5,10 @@
 /tmp
 /out-tsc
 /output
+/compiled
 
 # files to ignore
-./package-lock.json
+package-lock.json
 
 # dependencies
 /node_modules
