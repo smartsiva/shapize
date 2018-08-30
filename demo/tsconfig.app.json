@@ -9,9 +9,5 @@
     "polyfills.ts",  
     "test.ts",
     "**/*.spec.ts"
-  ],
-  "angularCompilerOptions": {
-      "enableResourceInlining": true,
-      "skipMetadataEmit": true
-  }
+  ]
 }
