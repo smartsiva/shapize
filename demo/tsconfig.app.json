@@ -6,7 +6,6 @@
     "types": []
   },
   "exclude": [
-    "polyfills.ts",  
     "test.ts",
     "**/*.spec.ts"
   ]
