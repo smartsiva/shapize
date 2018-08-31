@@ -1,0 +1,19 @@
+[resizable] {
+    width: 100px;
+    height: 100px;
+}
+
+[content] {
+    width: 100%;
+    height: 100%;
+}
+
+[plug] {
+    position: absolute;
+    cursor: ne-resize;
+    right: 0px;
+    width: 10px;
+    bottom: 0px;
+    height: 10px;
+    background-color: gray;
+}

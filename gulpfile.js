@@ -14,7 +14,18 @@ gulp.task('clean', function(done) {
     done();
 });
 
-gulp.task('default', gulp.series( 'clean', function(done) {
+gulp.task('compile', function(done) {
     spawn('./node_modules/.bin/ngc',['-p src/tsconfig.app.json'],{shell: true});
     done();
-}));
+});
+
+gulp.task('package:dev', function(done) {
+    done();
+});
+
+gulp.task('package', function(done) {
+    done();
+});
+
+gulp.task('default', gulp.series('clean', 'compile', 'package:dev'));
+gulp.task('build:package', gulp.series('clean', 'compile', 'package'));
