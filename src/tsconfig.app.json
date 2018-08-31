@@ -6,12 +6,11 @@
     "types": []
   },
   "exclude": [
-    "polyfills.ts",  
-    "test.ts",
     "**/*.spec.ts"
   ],
   "angularCompilerOptions": {
-      "enableResourceInlining": true,
-      "skipMetadataEmit": true
+    "skipMetadataEmit": true,
+    "skipTemplateCodegen": true,
+    "enableResourceInlining": true
   }
 }
