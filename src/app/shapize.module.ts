@@ -1,11 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ResizableComponent } from './resize/resize.component';
+import { DraggableDirective } from './directives/draggable.directive';
+import { ShapizeTemplateDirective } from './directives/shapize.template';
+
+import { ShapizeCoreModule } from './shapize.core';
+import { ResizeModule } from './components/resize/resize.module';
 
 @NgModule({
   imports: [
-    CommonModule
+    ShapizeCoreModule,
+    ResizeModule
   ],
-  declarations: [ResizableComponent]
+  declarations: [DraggableDirective],
+  exports: [ResizeModule, DraggableDirective]
 })
 export class ShapizeModule { }
