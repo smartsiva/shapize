@@ -1,4 +1,4 @@
-import { Component, ContentChild, ViewEncapsulation, TemplateRef, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, ContentChild, ViewEncapsulation, AfterViewInit, ViewChild, ElementRef, Input, QueryList } from '@angular/core';
 import { ShapizeTemplateDirective } from '../../directives/shapize.template';
 
 @Component({
@@ -9,10 +9,15 @@ import { ShapizeTemplateDirective } from '../../directives/shapize.template';
 })
 export class ResizableComponent implements AfterViewInit {
 
+    @Input() public width = 100;
+    @Input() public height = 100;
+
     @ViewChild('plug') public plug: ElementRef;
     @ViewChild('resizable') public resizable: ElementRef;
-    @ContentChild(ShapizeTemplateDirective)
-    public template: TemplateRef<ShapizeTemplateDirective>;
+    @ContentChild(ShapizeTemplateDirective) public template: ShapizeTemplateDirective;
+
+    public boxStyle: Object;
+    public templateRef: any;
 
     private parent: any;
     private plugRef: any;
@@ -21,6 +26,8 @@ export class ResizableComponent implements AfterViewInit {
     ngAfterViewInit() {
         this.plugRef = this.plug.nativeElement;
         this.parent = this.resizable.nativeElement;
+        this.templateRef = this.template.templateRef;
+        this.boxStyle = {width: `${this.width}px`, height: `${this.height}px`};
 
         this.plugRef.addEventListener('mousedown',
             (event) => {

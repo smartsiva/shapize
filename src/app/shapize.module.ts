@@ -11,7 +11,7 @@ import { ResizeModule } from './components/resize/resize.module';
     ShapizeCoreModule,
     ResizeModule
   ],
-  declarations: [DraggableDirective],
-  exports: [ResizeModule, DraggableDirective]
+  declarations: [DraggableDirective, ShapizeTemplateDirective],
+  exports: [ShapizeCoreModule, ResizeModule, DraggableDirective, ShapizeTemplateDirective]
 })
 export class ShapizeModule { }

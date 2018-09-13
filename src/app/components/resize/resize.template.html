@@ -1,4 +1,6 @@
-<div #resizable resizable>
-    <div content></div>
+<div #resizable resizable [ngStyle]="boxStyle">
+    <div content>
+        <ng-container *ngTemplateOutlet="templateRef"></ng-container>
+    </div>
     <div plug #plug></div>
 </div>
