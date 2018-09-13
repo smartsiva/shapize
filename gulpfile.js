@@ -9,9 +9,9 @@ gulp.task('clean', function(done) {
             if (error !== null) {
                 console.log('Error in deleting', error);
             }
-            done();            
         });
     }
+    done();
 });
 
 gulp.task('compile', function(done) {
@@ -34,7 +34,10 @@ gulp.task('package', function(done) {
 });
 
 gulp.task('remove-package', function(done) {
-    spawn('npm unpublish shapize', ['--registry http://127.0.0.1:4873'], {shell: true});
+    spawn('npm unpublish shapize', ['--registry http://127.0.0.1:4873'], {shell: true})
+        .on("close", function(code, signal) {
+            done();
+        });
 });
 
 gulp.task('default', gulp.series('clean', 'compile', 'package:dev'));
