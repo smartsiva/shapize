@@ -1,0 +1,15 @@
+[splitHolder] {
+    border: 1px solid lightgray;
+}
+
+[splitHolder] div {
+    position: relative;
+    float: left;
+    left: 0px;
+    height: 100%;
+}
+
+[hook] {
+    width: 10px;
+    cursor: ew-resize;
+}

@@ -3,8 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ShapizeTemplateDirective } from './directives/shapize.template';
 
 @NgModule({
-    declarations: [],
-    exports: [CommonModule],
+    declarations: [ShapizeTemplateDirective],
+    exports: [CommonModule, ShapizeTemplateDirective],
     imports: [CommonModule]
 }) export class ShapizeCoreModule {
 }
