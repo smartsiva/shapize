@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { ShapizeModule } from 'src';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [

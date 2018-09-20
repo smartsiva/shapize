@@ -18,6 +18,7 @@ import { Directive, ElementRef, AfterViewInit } from '@angular/core';
 
     ngAfterViewInit() {
         this.elementRef.style.position = 'absolute';
+        this.elementRef.style['z-index'] = '1111';
 
         this.setDraggable();
         this.onMove();

@@ -31,7 +31,7 @@ import { ShapizeTemplateDirective } from '../../directives/shapize.template';
 
     ngAfterViewInit() {
         this.parentRef = this.parent.nativeElement;
-        this.parentLeft = this.parentRef.clientLeft;
+        this.parentLeft = this.getOffsetLeft(this.parentRef);
         this.parentWidth = this.parentRef.clientWidth;
         this.hookWidth = this.hook.nativeElement.clientWidth + 1;
 
@@ -45,23 +45,30 @@ import { ShapizeTemplateDirective } from '../../directives/shapize.template';
             'max-width': `${this.maxWidth}px`
         };
         this.rightBlock = {
-            width: `${this.parentWidth - this.width}px`,
+            width: `${this.parentWidth - this.width - this.hookWidth}px`,
             'min-width': `${this.parentWidth - this.maxWidth - this.hookWidth}px`,
             'max-width': `${this.parentWidth - this.maxWidth - this.hookWidth}px`
         };
     }
 
-    private setEvents(): void {
+    private getOffsetLeft(ele): number {
+        let left = 0;
+        do {    left += ele.offsetLeft; } while ( ele = ele.offsetParent );
+        return left;
+    }
 
+    private setEvents(): void {
+        let layerX;
         this.hook.nativeElement.addEventListener('mousedown', (event) => {
             this.dragging = true;
+            layerX = event.layerX;
         });
 
         this.parentRef.addEventListener('mousemove', (event) => {
             if (this.dragging) {
-                const left = event.pageX - this.parentLeft;
+                const left = event.pageX - this.parentLeft - layerX;
                 this.leftBlock['width'] = `${left}px`;
-                this.leftBlock['width'] = `${this.parentWidth - left - this.hookWidth}px`;
+                this.rightBlock['width'] = `${this.parentWidth - left - this.hookWidth}px`;
             }
         });
 

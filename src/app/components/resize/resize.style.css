@@ -1,5 +1,6 @@
 [resizable] {
     position: absolute;
+    z-index: 1111;
 }
 
 [content] {
