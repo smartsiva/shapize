@@ -1,10 +1,22 @@
 <div class='page'>
     <div class='resizable'>
-        <resizable>
+        <div class='draggable' shapizeDraggable>draggable</div>
+    </div>
+
+    <div class='resizable'>
+        <resizable shapizeDraggable>
             <ng-template shapizeTemplate><div class='check'></div></ng-template>
         </resizable>
     </div>
-    <div class='draggable' shapizeDraggable>
-        <div>draggable</div>
+
+    <div class='splitter'>
+        <splitter>
+            <ng-template shapizeTemplate>
+                <div>first</div>
+            </ng-template>
+            <ng-template shapizeTemplate>
+                <div>second</div>
+            </ng-template>
+        </splitter>
     </div>
 </div>

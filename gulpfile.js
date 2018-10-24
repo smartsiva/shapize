@@ -22,11 +22,17 @@ gulp.task('compile', function(done) {
         });
 });
 
-gulp.task('package:dev', function(done) {
-    // push to your development/local registry
-    spawn('cd compiled && npm publish',['--registry http://127.0.0.1:4873'], {shell: true})
+gulp.task('move-npmrc', function(done) {
+    // move .npmrc file having your private repo config
+    fs.copyFileSync('.npmrc', 'compiled/.npmrc');
     done();
 });
+
+gulp.task('package:dev', gulp.series('move-npmrc', function(done) {
+    // push to your development/local registry
+    spawn('cd compiled && npm publish', {shell: true})
+    done();
+}));
 
 gulp.task('package', function(done) {
     spawn('cd compiled | npm publish',{shell: true})
@@ -34,7 +40,7 @@ gulp.task('package', function(done) {
 });
 
 gulp.task('remove-package', function(done) {
-    spawn('npm unpublish shapize', ['--registry http://127.0.0.1:4873'], {shell: true})
+    spawn('npm unpublish shapize', {shell: true})
         .on("close", function(code, signal) {
             done();
         });

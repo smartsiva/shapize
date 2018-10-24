@@ -24,6 +24,9 @@ export class ResizableComponent implements AfterViewInit {
     private isResizing = false;
 
     ngAfterViewInit() {
+        let parentLeft;
+        let parentTop;
+
         this.plugRef = this.plug.nativeElement;
         this.parent = this.resizable.nativeElement;
         this.templateRef = this.template.templateRef;
@@ -31,18 +34,33 @@ export class ResizableComponent implements AfterViewInit {
 
         this.plugRef.addEventListener('mousedown',
             (event) => {
+                event.stopPropagation();
                 this.isResizing = true;
+                parentLeft = this.getOffsetLeft(this.parent);
+                parentTop = this.getOffsetTop(this.parent);
             });
         document.addEventListener('mousemove',
             (event) => {
                 if (this.isResizing) {
-                    this.parent.style.width = `${event.pageX - this.parent.offsetLeft}px`;
-                    this.parent.style.height = `${event.pageY - this.parent.offsetTop}px`;
+                    this.parent.style.width = `${event.pageX - parentLeft}px`;
+                    this.parent.style.height = `${event.pageY - parentTop}px`;
                 }
             });
         document.addEventListener('mouseup',
             (event) => {
                 this.isResizing = false;
             });
+    }
+
+    private getOffsetLeft(ele): number {
+        let left = 0;
+        do {    left += ele.offsetLeft; } while ( ele = ele.offsetParent );
+        return left;
+    }
+
+    private getOffsetTop(ele): number {
+        let left = 0;
+        do {    left += ele.offsetTop; } while ( ele = ele.offsetParent );
+        return left;
     }
 }

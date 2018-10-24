@@ -1,0 +1,9 @@
+<div splitHolder #splitHolder>
+    <div [ngStyle]='leftBlock'>
+        <ng-container *ngTemplateOutlet="firstTemplate"></ng-container>
+    </div>
+    <div #splitter hook></div>
+    <div [ngStyle]='rightBlock'>
+        <ng-container *ngTemplateOutlet="secondTemplate"></ng-container>
+    </div>
+</div>
