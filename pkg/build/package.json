@@ -2,13 +2,14 @@
     "name": "shapize",
     "version": "0.0.1",
     "author": {
-      "email": "smartsiva7@gmail.com",
+      "email": "siva.chegondi7@gmail.com",
       "name": "Siva Chegondi"  
     },
     "description": "An angular package of movable and shapable components",
     "main": "index.js",
     "typings": "index.d.ts",
     "peerDependencies": {
-        "@angular/core": "^6.1.7"
+        "@angular/core": "^6.1.3",
+        "@angular/common": "^6.1.3"
     }
 }

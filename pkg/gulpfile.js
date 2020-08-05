@@ -15,9 +15,9 @@ gulp.task('clean', function(done) {
 });
 
 gulp.task('compile', function(done) {
-    spawn('./node_modules/.bin/ngc',['-p src/tsconfig.app.json'],{shell: true})
+    spawn('./node_modules/.bin/ngc',{shell: true})
         .on('close', function() {
-            fs.copyFileSync('build/package.json', 'compiled/package.json');
+            spawn('cp build/package.json ../compiled', {shell: true});
             done();
         });
 });
@@ -40,5 +40,5 @@ gulp.task('remove-package', function(done) {
         });
 });
 
-gulp.task('default', gulp.series('clean', 'compile', 'package:dev'));
+gulp.task('default', gulp.series('clean', 'compile'));
 gulp.task('build:package', gulp.series('clean', 'compile', 'package'));

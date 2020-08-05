@@ -4,8 +4,8 @@
   "newProjectRoot": "projects",
   "projects": {
     "shapize": {
-      "root": "",
-      "sourceRoot": "demo",
+      "root": "demo",
+      "sourceRoot": "./",
       "projectType": "application",
       "prefix": "app",
       "schematics": {},
@@ -13,17 +13,17 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/shapize",
-            "index": "demo/index.html",
-            "main": "demo/main.ts",
-            "polyfills": "demo/polyfills.ts",
-            "tsConfig": "demo/tsconfig.app.json",
+            "outputPath": "../dist/shapize",
+            "index": "index.html",
+            "main": "main.ts",
+            "polyfills": "polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
             "assets": [
-              "demo/favicon.ico",
-              "demo/assets"
+              "favicon.ico",
+              "assets"
             ],
             "styles": [
-              "demo/styles.css"
+              "styles.css"
             ],
             "scripts": []
           },
@@ -31,8 +31,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "demo/environments/environment.ts",
-                  "with": "demo/environments/environment.prod.ts"
+                  "replace": "environments/environment.ts",
+                  "with": "environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -67,17 +67,17 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "demo/test.ts",
-            "polyfills": "demo/polyfills.ts",
-            "tsConfig": "demo/tsconfig.spec.json",
-            "karmaConfig": "demo/karma.conf.js",
+            "main": "test.ts",
+            "polyfills": "polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
             "styles": [
-              "demo/styles.css"
+              "styles.css"
             ],
             "scripts": [],
             "assets": [
-              "demo/favicon.ico",
-              "demo/assets"
+              "favicon.ico",
+              "assets"
             ]
           }
         },
@@ -85,8 +85,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "demo/tsconfig.app.json",
-              "demo/tsconfig.spec.json"
+              "tsconfig.app.json",
+              "tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -110,6 +110,46 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "pkg": {
+      "root": "projects/pkg",
+      "sourceRoot": "projects/pkg/src",
+      "projectType": "library",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/pkg/tsconfig.lib.json",
+            "project": "projects/pkg/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "projects/pkg/ng-package.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/pkg/src/test.ts",
+            "tsConfig": "projects/pkg/tsconfig.spec.json",
+            "karmaConfig": "projects/pkg/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/pkg/tsconfig.lib.json",
+              "projects/pkg/tsconfig.spec.json"
+            ],
             "exclude": [
               "**/node_modules/**"
             ]
